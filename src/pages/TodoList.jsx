@@ -30,7 +30,7 @@ function TodoList() {
           value={text}
           onChange={e => setText(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && handleAdd()}
-          placeholder="Жаңа тапсырма..."
+          placeholder="Жаңа тапсырма"
           className="border p-2 rounded flex-1"
         />
         <button
@@ -63,9 +63,7 @@ function TodoList() {
         ))}
       </ul>
 
-      {todos.length === 0 && (
-        <p className="text-gray-400 text-center mt-8">Тапсырмалар жоқ</p>
-      )}
+      
     </div>
   )
 }
