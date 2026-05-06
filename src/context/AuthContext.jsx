@@ -9,7 +9,10 @@ const users = [
 ]
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(() => {
+    const stored = localStorage.getItem('user')
+    return stored ? JSON.parse(stored) : null
+  })
 
   const login = (username, password) => {
     const found = users.find(
@@ -17,14 +20,15 @@ export function AuthProvider({ children }) {
     )
     if (found) {
       setUser(found)
+      localStorage.setItem('user', JSON.stringify(found))
       return true
     }
     return false
   }
 
   const logout = () => {
-    
     setUser(null)
+    localStorage.removeItem('user')
   }
 
   return (
